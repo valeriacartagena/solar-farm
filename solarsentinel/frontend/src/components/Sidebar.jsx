@@ -5,8 +5,8 @@ export function Sidebar({ state }) {
 
   const {
     uploadedFile, faultTypes, setFaultTypes,
-    geeDatasets, setGeeDatasets, isLoading, activeStep,
-    handleFileUpload, handleDrop, runAnalysis, generateSynthetic
+    geeDatasets, setGeeDatasets, isLoading, activeStep, isDroneAnalyzing, isPipelineRunning,
+    handleFileUpload, handleDrop, runAnalysis, runDroneAnalysis, runTwoStagePipeline, generateSynthetic
   } = state;
 
   const updateArrayEntry = (arr, index, val, setter) => {
@@ -93,6 +93,8 @@ export function Sidebar({ state }) {
           {activeStep === 'detecting' && '🔍 Running CV detection...'}
           {activeStep === 'fetching_gee' && '🛰️ Pulling satellite data...'}
           {activeStep === 'generating_report' && '🧠 Generating report...'}
+          {activeStep === 'drone_analyzing' && '🎥 Analyzing drone video with AI Vision...'}
+          {activeStep === 'pipeline_running' && '🔬 Stage 1: AI Vision scanning → Stage 2: YOLOv8 classifying...'}
         </p>
       )}
 
@@ -101,7 +103,25 @@ export function Sidebar({ state }) {
         onClick={runAnalysis}
         disabled={isLoading || !uploadedFile}
       >
-        {isLoading ? 'Analyzing...' : 'Run Analysis'}
+        {isLoading && !isDroneAnalyzing && !isPipelineRunning ? 'Analyzing...' : 'Run Analysis'}
+      </button>
+
+      <button
+        className="run-btn"
+        onClick={runDroneAnalysis}
+        disabled={isLoading || !uploadedFile}
+        style={{ marginTop: 8, background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+      >
+        {isDroneAnalyzing ? 'Analyzing Video...' : 'Drone Video Analysis (Overshoot AI)'}
+      </button>
+
+      <button
+        className="run-btn"
+        onClick={runTwoStagePipeline}
+        disabled={isLoading || !uploadedFile}
+        style={{ marginTop: 8, background: 'linear-gradient(135deg, #f97316, #ef4444)' }}
+      >
+        {isPipelineRunning ? 'Pipeline Running...' : 'Two-Stage Pipeline (Overshoot + YOLOv8)'}
       </button>
     </div>
   );
