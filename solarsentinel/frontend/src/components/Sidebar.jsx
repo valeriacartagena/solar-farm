@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 export function Sidebar({ state }) {
   const [toast, setToast] = useState(null);
+  const [coordinates, setCoordinates] = useState('');
+  const [farmArea, setFarmArea] = useState('');
 
   const {
     uploadedFile, faultTypes, setFaultTypes,
@@ -46,6 +48,25 @@ export function Sidebar({ state }) {
               <span className="upload-hint">MP4 · MOV · JPG · PNG · TIFF</span>
             </>
           )}
+        </div>
+      </div>
+
+      {/* Farm Location */}
+      <div className="sidebar-section">
+        <div className="sidebar-label">Solar Farm Location</div>
+        <div className="field-group">
+          <input
+            className="dark-input"
+            value={coordinates}
+            onChange={(e) => setCoordinates(e.target.value)}
+            placeholder="Coordinates (lat, lng)"
+          />
+          <input
+            className="dark-input"
+            value={farmArea}
+            onChange={(e) => setFarmArea(e.target.value)}
+            placeholder="Area of solar farm (sq ft)"
+          />
         </div>
       </div>
 
@@ -113,9 +134,9 @@ export function Sidebar({ state }) {
           className="run-btn"
           onClick={runAnalysis}
           disabled={isLoading || !uploadedFile}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 12, color: '#ffffff' }}
         >
-          {isLoading ? '⏳ Analyzing...' : '⚡ Run Analysis'}
+          {isLoading ? 'Analyzing...' : 'Run Analysis'}
         </button>
       </div>
     </div>
