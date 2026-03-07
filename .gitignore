@@ -1,0 +1,28 @@
+# Datasets (too large for git, hosted on Kaggle)
+ml/data/raw/
+ml/data/merged/
+ml/data/tiny_test/
+
+# Model weights
+ml/weights/*.pt
+*.pt
+
+# Demo outputs
+ml/demo/output/
+
+# Training runs
+runs/
+solar_fault/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Sensitive / personal files
+kaggle.json
+radiant_technical_context.md
+
+# OS
+.DS_Store

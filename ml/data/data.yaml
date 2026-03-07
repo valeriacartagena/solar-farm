@@ -1,0 +1,12 @@
+path: /kaggle/input/solar-fault-merged
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 5
+names:
+  0: bird_drop
+  1: cracked
+  2: dusty
+  3: hotspot
+  4: panel

@@ -1,0 +1,6 @@
+ultralytics
+google-generativeai
+opencv-python
+Pillow
+roboflow
+numpy
