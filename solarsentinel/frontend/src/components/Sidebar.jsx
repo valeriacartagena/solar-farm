@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 export function Sidebar({ state }) {
   const [toast, setToast] = useState(null);
-  const [coordinates, setCoordinates] = useState('');
-  const [farmArea, setFarmArea] = useState('');
 
   const {
     uploadedFile, faultTypes, setFaultTypes,
     geeDatasets, setGeeDatasets, isLoading, activeStep,
-    handleFileUpload, handleDrop, runAnalysis, generateSynthetic
+    handleFileUpload, handleDrop, runAnalysis, generateSynthetic,
+    coordinates, setCoordinates,
+    farmArea, setFarmArea,
+    lookupFarm,
   } = state;
 
   const updateEntry = (arr, i, val, setter) => {
@@ -59,13 +60,14 @@ export function Sidebar({ state }) {
             className="dark-input"
             value={coordinates}
             onChange={(e) => setCoordinates(e.target.value)}
+            onBlur={lookupFarm}
             placeholder="Coordinates (lat, lng)"
           />
           <input
             className="dark-input"
             value={farmArea}
             onChange={(e) => setFarmArea(e.target.value)}
-            placeholder="Area of solar farm (sq ft)"
+            placeholder="Area of solar farm (acres)"
           />
         </div>
       </div>

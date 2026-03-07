@@ -1,5 +1,5 @@
 /* =============================================
-   SOLARSENTINEL AI — Premium Design System
+   Radiant — Premium Design System
    Inspired by Gemini AI Studio + Lovable
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Google+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -518,6 +518,8 @@ body,
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 .panel-title {
@@ -543,11 +545,15 @@ body,
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 14px;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13.5px;
+  line-height: 1.65;
   color: var(--text-secondary);
-  min-height: 100px;
-  margin-bottom: 20px;
+  min-height: 80px;
+  max-height: 180px;
+  overflow-y: auto;
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 16px;
 }
 
 /* Damage table */

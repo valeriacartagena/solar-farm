@@ -1,4 +1,4 @@
-# SolarSentinel AI
+# Radiant
 
 A high-fidelity minimum viable product (MVP) demonstration for a computer vision and satellite imagery drone inspection platform.
 

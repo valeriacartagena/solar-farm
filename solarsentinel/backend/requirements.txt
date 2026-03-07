@@ -3,6 +3,10 @@ uvicorn
 python-multipart
 opencv-python
 ultralytics
-earthengine-api
+earthengine-api>=0.1.370
 google-generativeai
 python-dotenv
+pandas>=2.1.0
+numpy>=1.26.0
+Pillow>=10.0.0
+httpx>=0.27.0
