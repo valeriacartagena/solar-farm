@@ -1,0 +1,8 @@
+fastapi[all]
+uvicorn
+python-multipart
+opencv-python
+ultralytics
+earthengine-api
+google-generativeai
+python-dotenv
