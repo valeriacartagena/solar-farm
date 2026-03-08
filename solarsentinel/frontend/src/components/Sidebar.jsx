@@ -6,7 +6,10 @@ export function Sidebar({ state }) {
   const {
     uploadedFile, faultTypes, setFaultTypes,
     geeDatasets, setGeeDatasets, isLoading, activeStep, isDroneAnalyzing, isPipelineRunning,
-    handleFileUpload, handleDrop, runAnalysis, runDroneAnalysis, runTwoStagePipeline, generateSynthetic
+    handleFileUpload, handleDrop, runAnalysis, runDroneAnalysis, runTwoStagePipeline, generateSynthetic,
+    coordinates, setCoordinates,
+    farmArea, setFarmArea,
+    lookupFarm,
   } = state;
 
   const updateArrayEntry = (arr, index, val, setter) => {
@@ -28,19 +31,49 @@ export function Sidebar({ state }) {
 
   return (
     <div className="sidebar">
-      {/* Upload Zone */}
-      <div
-        className="upload-zone"
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-      >
-        <input type="file" onChange={handleFileUpload} accept=".mp4,.mov,.jpg,.png,.tiff" />
-        <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
-        </svg>
-        <span style={{ marginTop: 6 }}>
-          {uploadedFile ? uploadedFile.name : 'Choose a file or drag it here.'}
-        </span>
+      {/* Upload */}
+      <div className="sidebar-section">
+        <div className="sidebar-label">Upload Feed</div>
+        <div
+          className="upload-zone"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={handleDrop}
+        >
+          <input type="file" onChange={handleFileUpload} accept=".mp4,.mov,.jpg,.png,.tiff" />
+          <div className="upload-icon">
+            <svg fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+            </svg>
+          </div>
+          {uploadedFile ? (
+            <span className="upload-filename">{uploadedFile.name}</span>
+          ) : (
+            <>
+              <span className="upload-text"><strong>Choose a file</strong> or drag it here</span>
+              <span className="upload-hint">MP4 · MOV · JPG · PNG · TIFF</span>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Farm Location */}
+      <div className="sidebar-section">
+        <div className="sidebar-label">Solar Farm Location</div>
+        <div className="field-group">
+          <input
+            className="dark-input"
+            value={coordinates}
+            onChange={(e) => setCoordinates(e.target.value)}
+            onBlur={lookupFarm}
+            placeholder="Coordinates (lat, lng)"
+          />
+          <input
+            className="dark-input"
+            value={farmArea}
+            onChange={(e) => setFarmArea(e.target.value)}
+            placeholder="Area of solar farm (acres)"
+          />
+        </div>
       </div>
 
       {/* Fault Types */}
